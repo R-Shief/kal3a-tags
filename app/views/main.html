@@ -1,23 +1,24 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div ng-controller="MainCtrl">
+<h1 class="page-header">Enter a hashtag</h1>
+<input type="text" ng-model="tag" typeahead-on-select="getData()" typeahead-min-length="3" typeahead-wait-ms="100" typeahead-editable="false" placeholder="Start typing and our list of keywords will drop down" typeahead="address for address in getTags($viewValue) | filter:$viewValue" class="form-control input-lg">
+<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+<div class="clearfix">
+  <linechart data="data" options="options" mode=""></linechart>
 </div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Top Images</h2>
+    <carousel interval="5000">
+      <slide ng-repeat="slide in slides">
+        <img ng-src="{{ slide }}">
+      </slide>
+    </carousel>
+  </div>
+  <div class="col-md-6">
+    <h2>Top Links</h2>
+    <ul>
+      <li ng-repeat="link in links"><a ng-href="{{ link }}">{{ link }}</a></li>
+    </ul>
+  </div>
+</div>
 </div>

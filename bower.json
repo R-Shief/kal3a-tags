@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "dependencies": {
     "angular": "~1.2.0",
+    "angular-bootstrap": "~0.11.0",
     "bootstrap-sass-official": "^3.2.0",
-    "CornerCouch": null
+    "CornerCouch": null,
+    "n3-charts.line-chart": "~1.1",
+    "underscore": "~1.6"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0"
