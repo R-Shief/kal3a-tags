@@ -48,7 +48,7 @@
     </div>
 
     <div class="container">
-    <div ng-include="'views/main.html'"></div>
+      <ng-view></ng-view>
     </div>
 
     <script src="http://localhost:8000/bundles/fosjsrouting/js/router.js"></script>
@@ -58,6 +58,7 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/CornerCouch/angular-cornercouch.js"></script>
@@ -73,6 +74,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/services/fos-routing.js"></script>
         <script src="scripts/services/underscore.js"></script>
+        <script src="scripts/directives/kal3alinechart.js"></script>
         <!-- endbuild -->
 </body>
 </html>

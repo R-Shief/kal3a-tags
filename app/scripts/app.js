@@ -10,7 +10,21 @@
  */
 angular
   .module('kal3aTagsApp', [
+      'ngRoute',
       'CornerCouch',
       'n3-charts.linechart',
       'ui.bootstrap'
-  ]);
+  ])
+    .config(function($routeProvider) {
+        $routeProvider
+            .when('/:tag', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl',
+                resolve: {
+                    tag: ['$route', function ($route) {
+                        return $route.current.params.tag;
+                    }]
+                }
+            })
+    })
+;
