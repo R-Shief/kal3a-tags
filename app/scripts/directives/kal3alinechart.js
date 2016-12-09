@@ -8,7 +8,8 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aLineChart', {
-    template: '<linechart data="$ctrl.data" options="$ctrl.options"></linechart>',
+    template: '<nvd3 data="$ctrl.data" options="$ctrl.options"></nvd3>',
+    // template: '<linechart data="$ctrl.data" options="$ctrl.options"></linechart>',
     transclude: true,
     bindings: {
       tag: '<'
@@ -18,16 +19,15 @@ angular.module('kal3aTagsApp')
         var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
         this.options = {
-          axes: {
-            x: {type: 'date'},
-            y: {type: 'linear'}
-          },
-          series: [
-            {
-              y: 'value',
-              label: this.tag
+          chart: {
+            type: 'lineChart',
+            height: 500,
+            xAxis: {
+              tickFormat: function(d){
+                return d3.time.format('%x')(new Date(d));
+              }
             }
-          ]
+          }
         };
 
         $http
@@ -42,14 +42,18 @@ angular.module('kal3aTagsApp')
             }
           })
           .then(function (res) {
-            this.data = _.map(res.data.rows, function (row) {
-              var utc = row.key.splice(1);
-              utc[1] = utc[1] - 1;
-              return {
-                x: new Date(Date.UTC.apply(null, utc)),
-                value: row.value
-              };
-            });
+            this.data = [{
+              key: this.tag,
+              values: _.map(res.data.rows, function (row) {
+                var utc = row.key.splice(1);
+                utc[1] = utc[1] - 1;
+                return {
+                  x: new Date(Date.UTC.apply(null, utc)),
+                  y: row.value,
+                  series: 0
+                };
+              })
+            }];
           }.bind(this));
       };
     }]

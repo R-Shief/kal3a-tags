@@ -25,10 +25,10 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'bower_components/d3/d3.js',
-      'bower_components/moment/moment.js',
-      'bower_components/n3-charts.line-chart/build/line-chart.min.js',
       'bower_components/underscore/underscore.js',
+      'bower_components/d3/d3.js',
+      'bower_components/nvd3/build/nv.d3.js',
+      'bower_components/angular-nvd3/dist/angular-nvd3.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

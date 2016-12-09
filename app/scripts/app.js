@@ -11,7 +11,7 @@
 angular
   .module('kal3aTagsApp', [
     'ngRoute',
-    'n3-charts.linechart',
+    'nvd3',
     'ui.bootstrap'
   ])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
