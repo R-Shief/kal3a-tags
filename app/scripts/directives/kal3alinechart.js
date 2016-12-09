@@ -9,7 +9,6 @@
 angular.module('kal3aTagsApp')
   .component('kal3aLineChart', {
     template: '<nvd3 data="$ctrl.data" options="$ctrl.options"></nvd3>',
-    // template: '<linechart data="$ctrl.data" options="$ctrl.options"></linechart>',
     transclude: true,
     bindings: {
       tag: '<'
