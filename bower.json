@@ -2,11 +2,10 @@
   "name": "kal3a-tags",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.0",
-    "angular-route": "^1.4.0",
-    "angular-bootstrap": "^1.0",
-    "bootstrap-sass-official": "^3.2.0",
-    "CornerCouch": null,
+    "angular": "^1.6",
+    "angular-route": "^1.6",
+    "angular-bootstrap": "^2.0",
+    "bootstrap-sass": "^3.2",
     "n3-charts.line-chart": "~1.1",
     "d3": "^3.0",
     "underscore": "^1.6"
@@ -17,15 +16,13 @@
   "appPath": "app",
   "moduleName": "kal3aTagsApp",
   "overrides": {
-    "bootstrap": {
+    "jquery": {
+      "main": []
+    },
+    "bootstrap-sass": {
       "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
+        "assets/stylesheets/_bootstrap.scss"
       ]
     }
-  },
-  "resolutions": {
-    "angular": "1.5.9"
   }
 }

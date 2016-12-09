@@ -1,20 +1,11 @@
-<script type="text/ng-template" id="customTemplate.html">
-  <a>
-    <span ng-bind-html="match.model.key | uibTypeaheadHighlight:query"></span> ({{ match.model.value }})
-  </a>
-</script>
 <h1 class="page-header">Enter a hashtag</h1>
-<input type="text" ng-model="tag" typeahead-min-length="1" typeahead-wait-ms="100" typeahead-editable="false" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in getTags($viewValue)" class="form-control input-lg">
-<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-<kal3a-line-chart tag="tag" style="height:600px;"></kal3a-line-chart>
+<kal3a-tag-input ng-model="main.tag"></kal3a-tag-input>
+
+<h2>Graph</h2>
+<kal3a-line-chart tag="main.tag"></kal3a-line-chart>
+
 <h2>Top Images</h2>
-<uib-carousel interval="5000">
-  <uib-slide ng-repeat="slide in slides">
-    <img ng-src="{{ slide }}">
-  </uib-slide>
-</uib-carousel>
-</div>
+<kal3a-image-carousel tag="main.tag"></kal3a-image-carousel>
+
 <h2>Top Links</h2>
-<ul>
-  <li ng-repeat="link in links"><a ng-href="{{ link }}">{{ link }}</a></li>
-</ul>
+<kal3a-link-list tag="main.tag"></kal3a-link-list>
