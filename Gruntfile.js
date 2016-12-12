@@ -9,6 +9,13 @@
 
 module.exports = function (grunt) {
 
+  grunt.option('color', false);
+
+  /**
+   * Retrieving current target (eg. > grunt run --target=dev )
+   */
+  var envTarget = grunt.option('target') || process.env.KAL3A_TARGET || 'http://localhost:8000';
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -26,12 +33,33 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+    preprocess: {
+      options: {
+        context: {
+          KAL3A_TARGET: envTarget
+        }
+      },
+      server: {
+        src: '<%= yeoman.app %>/index.html',
+        dest: '.tmp/index.html'
+      },
+      dist: {
+        src: '<%= yeoman.dist %>/index.html',
+        options: {
+          inline : true
+        }
+      }
+    },
 
     // Project settings
     yeoman: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      preprocess: {
+        files: ['<%= yeoman.app %>/index.html'],
+        tasks: ['preprocess']
+      },
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -456,6 +484,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'preprocess:server',
       'concurrent:server',
       'postcss:server',
       'connect:livereload',
@@ -470,6 +499,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'preprocess:server',
     'wiredep',
     'concurrent:test',
     'postcss',
@@ -487,6 +517,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'preprocess:dist',
     'cssmin',
     'uglify',
     'filerev',
