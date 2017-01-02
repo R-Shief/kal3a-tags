@@ -13,7 +13,7 @@ angular.module('kal3aTagsApp')
     bindings: {
       tag: '<'
     },
-    controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
+    controller: ['$http', 'fosRouting', '_', 'd3', function ($http, fosRouting, _, d3) {
       this.$onInit = function () {
         var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
