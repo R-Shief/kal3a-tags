@@ -31,7 +31,8 @@ angular.module('kal3aTagsApp')
               group_level: 1,
               // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
               startkey: angular.toJson([val]),
-              endkey: angular.toJson([endkey, {}])
+              endkey: angular.toJson([endkey, {}]),
+              stale: 'ok'
             }
           })
           .then(function (res) {
