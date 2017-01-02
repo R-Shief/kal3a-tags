@@ -13,7 +13,7 @@ angular.module('kal3aTagsApp')
     bindings: {
       tag: '<'
     },
-    controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
+    controller: ['$http', 'fosRouting', '_', 'd3', function ($http, fosRouting, _, d3) {
       this.$onInit = function () {
         var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
@@ -37,7 +37,8 @@ angular.module('kal3aTagsApp')
               group_level: 5,
               // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
               startkey: angular.toJson([this.tag]),
-              endkey: angular.toJson([this.tag,{}])
+              endkey: angular.toJson([this.tag,{}]),
+              stale: 'ok'
             }
           })
           .then(function (res) {
