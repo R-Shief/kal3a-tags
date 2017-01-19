@@ -25,6 +25,17 @@ angular
             return $route.current.params.tag;
           }]
         }
+      })
+      .when('/parameters/:id', {
+        templateUrl: 'views/parameters.html',
+        controller: 'ParametersCtrl',
+        controllerAs: 'parameters',
+        resolve: {
+          id: ['$route', function ($route) {
+            return $route.current.params.id;
+          }]
+        }
+
       });
 
     $locationProvider.html5Mode(false);
