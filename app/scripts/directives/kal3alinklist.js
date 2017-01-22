@@ -11,14 +11,17 @@ angular.module('kal3aTagsApp')
     template: '<ul>' +
     '<li ng-repeat="link in $ctrl.links"><a ng-href="{{ link.key }}">{{ link.key }}</a> ({{ link.value }})</li>' +
     '</ul>',
-    transclude: true,
-    bindings: {
-      tag: '<'
+    require: {
+      'queryCtrl': '^kal3aQuery'
     },
     controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
-      this.$onInit = function () {
-        var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
+      var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
+      this.$onInit = function () {
+        this.queryCtrl.graphs.push(this);
+      };
+
+      this.runQuery = function (query) {
         $http
           .get(server + '/_design/nofollow/_view/tags', {
             params: {
@@ -26,8 +29,8 @@ angular.module('kal3aTagsApp')
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
               group_level: 2,
               // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-              startkey: angular.toJson([this.tag]),
-              endkey: angular.toJson([this.tag,{}]),
+              startkey: angular.toJson([query.tag]),
+              endkey: angular.toJson([query.tag, {}]),
               stale: 'ok'
             }
           })
@@ -36,7 +39,7 @@ angular.module('kal3aTagsApp')
                 return -row.value;
               },
               listFactory = function (row) {
-                return { key: row.key[1], value: row.value };
+                return {key: row.key[1], value: row.value};
               },
               filterLongTail = function (row) {
                 return (row.value > 5);

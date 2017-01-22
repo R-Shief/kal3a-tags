@@ -13,13 +13,20 @@ angular.module('kal3aTagsApp')
     '<img ng-src="{{ slide }}">' +
     '</uib-slide>' +
     '</uib-carousel>',
-    transclude: false,
     bindings: {
-      tag: '<'
+      query: '<'
+    },
+    require: {
+      'queryCtrl': '^kal3aQuery'
     },
     controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
+      var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
+
       this.$onInit = function () {
-        var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
+        this.queryCtrl.graphs.push(this);
+      };
+
+      this.runQuery = function (query) {
 
         $http
           .get(server + '/_design/enclosure/_view/tags', {
@@ -28,8 +35,8 @@ angular.module('kal3aTagsApp')
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
               group_level: 2,
               // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-              startkey: angular.toJson([this.tag]),
-              endkey: angular.toJson([this.tag,{}]),
+              startkey: angular.toJson([query.tag]),
+              endkey: angular.toJson([query.tag,{}]),
               stale: 'ok'
             }
           })

@@ -8,12 +8,30 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aTagInput', {
-    template: '<input type="text" ng-model="$ctrl.tag" typeahead-on-select="$ctrl.goTo($item)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg"><script type="text/ng-template" id="customTemplate.html"><a><span ng-bind-html="match.model.key | uibTypeaheadHighlight:query"></span> ({{ match.model.value }})</a></script>',
-    controller: ['$http', 'fosRouting', '$location', '_', function ($http, fosRouting, $location, _) {
+    template: [
+      '<div class="form-group">',
+      '<label>Tag</label>',
+      '<input type="text" ng-model="$ctrl.tag" ng-model-options="{ debounce: 200 }" typeahead-on-select="$ctrl.update($item.key)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg" typeahead-select-on-blur="true" typeahead-select-on-exact="true" ng-change="$ctrl.update($ctrl.tag)">',
+      '</div>',
+      '<script type="text/ng-template" id="customTemplate.html">',
+      '<a>',
+      '<span ng-bind-html="match.model.key | uibTypeaheadHighlight:query">',
+      '</span> ({{ match.model.value }})',
+      '</a>',
+      '</script>'
+    ].join(''),
+    bindings: {
+      'tag': '<',
+      'onUpdate': '&'
+    },
+    controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
       var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
-      this.goTo = function ($item) {
-        $location.path('/tag/' + $item.key);
+      this.$onInit = function () {
+      };
+
+      this.update = function (value) {
+        this.onUpdate({ value: value });
       };
 
       this.getTags = function (val) {

@@ -18,8 +18,6 @@ angular
     $routeProvider
       .when('/tag/:tag', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main',
         resolve: {
           tag: ['$route', function ($route) {
             return $route.current.params.tag;

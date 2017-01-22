@@ -23,10 +23,8 @@ angular.module('kal3aTagsApp')
     bindings: {
       parameters: '@'
     },
-    transclude: false,
     controller: ['$http', 'fosRouting', '_', 'd3', function ($http, fosRouting, _, d3) {
       this.$onInit = function () {
-        console.log(this.parameters);
         var server = fosRouting.generate('get_stream_summary', {parameters: this.parameters}, true);
 
         this.store = [];
