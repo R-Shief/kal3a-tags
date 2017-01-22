@@ -8,11 +8,11 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aImageCarousel', {
-    template: '<uib-carousel>' +
-    '<uib-slide ng-repeat="slide in $ctrl.slides">' +
-    '<img ng-src="{{ slide }}">' +
-    '</uib-slide>' +
-    '</uib-carousel>',
+    template: ['<div uib-carousel>',
+    '<div uib-slide ng-repeat="slide in $ctrl.slides">',
+    '<img ng-src="{{ slide }}">',
+    '</div>',
+    '</div>'].join(''),
     bindings: {
       query: '<'
     },
@@ -27,16 +27,29 @@ angular.module('kal3aTagsApp')
       };
 
       this.runQuery = function (query) {
+        var startkey = [
+          query.tag,
+          query.dateRange[0].getFullYear(),
+          query.dateRange[0].getMonth() + 1,
+          query.dateRange[0].getDate()
+        ];
+        var endkey = [
+          query.tag,
+          query.dateRange[1].getFullYear(),
+          query.dateRange[1].getMonth() + 1,
+          query.dateRange[1].getDate(),
+          {}
+        ];
 
         $http
-          .get(server + '/_design/enclosure/_view/tags', {
+          .get(server + '/_design/enclosure/_view/tags_timeseries', {
             params: {
               group: true,
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-              group_level: 2,
+              group_level: 5,
               // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-              startkey: angular.toJson([query.tag]),
-              endkey: angular.toJson([query.tag,{}]),
+              startkey: angular.toJson(startkey),
+              endkey: angular.toJson(endkey),
               stale: 'ok'
             }
           })
@@ -45,13 +58,13 @@ angular.module('kal3aTagsApp')
                 return -row.value;
               },
               slideFactory = function (row) {
-                return row.key[1];
+                return row.key[4];
               },
               filterLongTail = function (row) {
                 return (row.value > 5);
               };
 
-            this.slides = _.map(_.sortBy(_.filter(res.data.rows, filterLongTail), reverseSort), slideFactory);
+            this.slides = _(res.data.rows).chain().sortBy(reverseSort).filter(filterLongTail).map(slideFactory).uniq().value();
           }.bind(this));
       };
     }]
