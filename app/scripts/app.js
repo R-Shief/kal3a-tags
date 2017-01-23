@@ -16,13 +16,73 @@ angular
   ])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/tag/:tag', {
-        templateUrl: 'views/main.html',
-        resolve: {
-          tag: ['$route', function ($route) {
-            return $route.current.params.tag;
-          }]
-        }
+      .when('/specimen/line-chart', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query&gt;','<br/>',
+          '&lt;kal3a-line-chart query="$ctrl.query"&gt;&lt;/kal3a-line-chart&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-query>',
+          '<kal3a-line-chart query="$ctrl.query"></kal3a-line-chart>',
+          '</kal3a-query>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join(''),
+        controller: [function () {
+
+          this.query = {
+            "tag": "business",
+            "dateRange": []
+          };
+        }]
+      })
+      .when('/specimen/image-carousel', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query&gt;','<br/>',
+          '&lt;kal3a-image-carousel query="$ctrl.query"&gt;&lt;/kal3a-image-carousel&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-query>',
+          '<kal3a-image-carousel query="$ctrl.query"></kal3a-image-carousel>',
+          '</kal3a-query>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join(''),
+        controller: [function () {
+
+          this.query = {
+            "tag": "business",
+            "dateRange": []
+          };
+        }]
+      })
+      .when('/specimen/link-list', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query&gt;','<br/>',
+          '&lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-query>',
+          '<kal3a-link-list query="$ctrl.query"></kal3a-link-list>',
+          '</kal3a-query>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join(''),
+        controller: [function () {
+          this.query = {
+            "tag": "business",
+            "dateRange": []
+          };
+        }]
       })
       .when('/parameters/:id', {
         templateUrl: 'views/parameters.html',

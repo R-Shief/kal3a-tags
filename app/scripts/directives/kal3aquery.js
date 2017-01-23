@@ -1,3 +1,4 @@
+/* global angular */
 'use strict';
 
 /**
@@ -9,8 +10,10 @@
 angular.module('kal3aTagsApp')
   .component('kal3aQuery', {
     template: [
-      '<kal3a-tag-input ng-model="$ctrl.query.tag" ng-model-options="{ debounce: 200 }" on-update="$ctrl.update(\'query\', \'tag\', value)"></kal3a-tag-input>',
+      '<form>',
+      '<kal3a-tag-input tag="$ctrl.query.tag" ng-model-options="{ debounce: 200 }" on-update="$ctrl.update(\'query\', \'tag\', value)"></kal3a-tag-input>',
       '<kal3a-date-range-input date-range="$ctrl.query.dateRange" on-update="$ctrl.update(\'query\', \'dateRange\', value)"></kal3a-date-range-input>',
+      '</form>',
       '<ng-transclude></ng-transclude>'
     ].join(''),
     transclude: true,
@@ -25,7 +28,7 @@ angular.module('kal3aTagsApp')
 
       this.query = {
         dateRange: [startDate, endDate],
-        tag: ''
+        tag: 'business'
       };
       this.graphs = [];
 
@@ -33,11 +36,19 @@ angular.module('kal3aTagsApp')
         var query;
         this[obj][prop] = value;
         query = this[obj];
-        angular.forEach(this.graphs, function (ctrl) {
-          if (angular.isDefined(query.dateRange[0]) && angular.isDefined(query.dateRange[1]) && angular.isDefined(query.tag)) {
+        if (angular.isDefined(query.dateRange[0]) && angular.isDefined(query.dateRange[1]) && angular.isDefined(query.tag)) {
+          angular.forEach(this.graphs, function (ctrl) {
             ctrl.runQuery(query);
-          }
-        });
+          });
+        }
+      };
+
+      this.$postLink = function () {
+        if (angular.isDefined(this.query.dateRange[0]) && angular.isDefined(this.query.dateRange[1]) && angular.isDefined(this.query.tag)) {
+          angular.forEach(this.graphs, function (ctrl) {
+            ctrl.runQuery(this.query);
+          }.bind(this));
+        }
       };
     }]
   });

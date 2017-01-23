@@ -2,10 +2,16 @@
 
 <h2>Graph</h2>
 <kal3a-query>
-    <kal3a-line-chart query="$ctrl.query"></kal3a-line-chart>
-    <h2>Top Images</h2>
-    <kal3a-image-carousel query="$ctrl.query"></kal3a-image-carousel>
-    <h2>Top Links</h2>
-    <kal3a-link-list query="$ctrl.query"></kal3a-link-list>
+    <hr>
+    <uib-tabset active="$ctrl.active">
+        <uib-tab heading="Trends" select="$ctrl.select()">
+            <kal3a-line-chart query="$ctrl.query"></kal3a-line-chart>
+        </uib-tab>
+        <uib-tab heading="Top Images">
+            <kal3a-image-carousel query="$ctrl.query"></kal3a-image-carousel>
+        </uib-tab>
+        <uib-tab heading="Top Links">
+            <kal3a-link-list query="$ctrl.query"></kal3a-link-list>
+        </uib-tab>
+    </uib-tabset>
 </kal3a-query>
-

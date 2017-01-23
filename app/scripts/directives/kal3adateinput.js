@@ -11,7 +11,7 @@ angular.module('kal3aTagsApp')
   .component('kal3aDateInput', {
     template: [
       '<div class="form-group">',
-      '<label>{{ $ctrl.label }}</label>',
+      '<label class="control-label">{{ $ctrl.label }}</label>',
       '<input type="date" ng-model="$ctrl.date" class="form-control" ng-change="$ctrl.update($ctrl.date)">',
       '</div>'
     ].join(''),
