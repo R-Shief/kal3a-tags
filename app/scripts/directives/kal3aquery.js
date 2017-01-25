@@ -11,7 +11,7 @@ angular.module('kal3aTagsApp')
   .component('kal3aQuery', {
     template: ['$element', '$attrs', function ($element, $attrs) {
       return [
-        '<form class="row" ng-model-options="{ debounce: 500 }">',
+        '<form class="row" ng-model-options="{ debounce: 500, updateOn: \'default blur\' }">',
         '<div uib-alert ng-class="\'alert-danger\'" ng-if="$ctrl.error">{{$ctrl.error.reason}}</div>',
         '<kal3a-tag-input query="$ctrl.query" on-update="$ctrl.update(\'query\', \'tag\', value)"></kal3a-tag-input>',
         '<kal3a-date-range-input date-range="$ctrl.query.dateRange" on-update="$ctrl.update(\'query\', \'dateRange\', value)"></kal3a-date-range-input>',
