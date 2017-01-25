@@ -11,6 +11,7 @@
 angular
   .module('kal3aTagsApp', [
     'ngRoute',
+    'ngAnimate',
     'nvd3',
     'ui.bootstrap'
   ])

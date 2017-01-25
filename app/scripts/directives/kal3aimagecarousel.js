@@ -8,11 +8,13 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aImageCarousel', {
-    template: ['<div uib-carousel>',
-    '<div uib-slide ng-repeat="slide in $ctrl.slides">',
-    '<img ng-src="{{ slide }}">',
-    '</div>',
-    '</div>'].join(''),
+    template: [
+      '<div uib-carousel>',
+      '<div uib-slide ng-repeat="slide in $ctrl.slides" index="slide.id">',
+      '<img ng-src="{{ slide.src }}" ng-style="slide.style">',
+      '</div>',
+      '</div>'
+    ].join(''),
     bindings: {
       query: '<'
     },
@@ -57,8 +59,8 @@ angular.module('kal3aTagsApp')
             var reverseSort = function (row) {
                 return -row.value;
               },
-              slideFactory = function (row) {
-                return row.key[4];
+              slideFactory = function (row, k) {
+                return { id: k, src: row.key[4], style: { height: '500px' } };
               },
               filterLongTail = function (row) {
                 return (row.value > 5);
