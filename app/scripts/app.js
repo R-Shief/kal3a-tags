@@ -20,69 +20,49 @@ angular
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query&gt;','<br/>',
-          '&lt;kal3a-line-chart query="$ctrl.query"&gt;&lt;/kal3a-line-chart&gt;','<br/>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-line-chart query="$ctrl.query"&gt;&lt;/kal3a-line-chart&gt;','<br/>',
           '&lt;/kal3a-query&gt;',
           '</code>',
           '<preview>',
-          '<kal3a-query>',
+          '<kal3a-query tag="\'business\'">',
           '<kal3a-line-chart query="$ctrl.query"></kal3a-line-chart>',
           '</kal3a-query>',
           '</preview>',
           '</kal3a-specimen>'
-        ].join(''),
-        controller: [function () {
-
-          this.query = {
-            "tag": "business",
-            "dateRange": []
-          };
-        }]
+        ].join('')
       })
       .when('/specimen/image-carousel', {
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query&gt;','<br/>',
-          '&lt;kal3a-image-carousel query="$ctrl.query"&gt;&lt;/kal3a-image-carousel&gt;','<br/>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-image-carousel query="$ctrl.query"&gt;&lt;/kal3a-image-carousel&gt;','<br/>',
           '&lt;/kal3a-query&gt;',
           '</code>',
           '<preview>',
-          '<kal3a-query>',
+          '<kal3a-query tag="\'business\'">',
           '<kal3a-image-carousel query="$ctrl.query"></kal3a-image-carousel>',
           '</kal3a-query>',
           '</preview>',
           '</kal3a-specimen>'
-        ].join(''),
-        controller: [function () {
-
-          this.query = {
-            "tag": "business",
-            "dateRange": []
-          };
-        }]
+        ].join('')
       })
       .when('/specimen/link-list', {
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query&gt;','<br/>',
-          '&lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
           '&lt;/kal3a-query&gt;',
           '</code>',
           '<preview>',
-          '<kal3a-query>',
+          '<kal3a-query tag="\'business\'">',
           '<kal3a-link-list query="$ctrl.query"></kal3a-link-list>',
           '</kal3a-query>',
           '</preview>',
           '</kal3a-specimen>'
-        ].join(''),
-        controller: [function () {
-          this.query = {
-            "tag": "business",
-            "dateRange": []
-          };
-        }]
+        ].join('')
       })
       .when('/parameters/:id', {
         templateUrl: 'views/parameters.html',
