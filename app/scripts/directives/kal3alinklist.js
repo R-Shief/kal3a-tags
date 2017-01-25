@@ -22,7 +22,7 @@ angular.module('kal3aTagsApp')
       };
 
       this.runQuery = function (query) {
-        $http
+        return $http
           .get(server + '/_design/nofollow/_view/tags', {
             params: {
               group: true,

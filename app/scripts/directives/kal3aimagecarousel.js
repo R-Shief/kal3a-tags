@@ -41,7 +41,7 @@ angular.module('kal3aTagsApp')
           {}
         ];
 
-        $http
+        return $http
           .get(server + '/_design/enclosure/_view/tags_timeseries', {
             params: {
               group: true,

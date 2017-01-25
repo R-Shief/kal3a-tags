@@ -1,3 +1,4 @@
+/* global angular */
 'use strict';
 
 /**
@@ -11,7 +12,7 @@ angular.module('kal3aTagsApp')
     template: [
       '<div class="form-group col-md-12">',
       '<label class="control-label">Tag</label>',
-      '<input type="text" ng-model="$ctrl.tag" ng-model-options="{ debounce: 200 }" typeahead-on-select="$ctrl.update($item.key)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg" typeahead-select-on-blur="true" typeahead-select-on-exact="true" ng-change="$ctrl.update($ctrl.tag)">',
+      '<input type="text" ng-model="$ctrl.query.tag" typeahead-on-select="$ctrl.update($item.key)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg" typeahead-select-on-blur="true" typeahead-select-on-exact="true" ng-change="$ctrl.update($ctrl.query.tag)" ng-disabled="$ctrl.disable">',
       '</div>',
       '<script type="text/ng-template" id="customTemplate.html">',
       '<a>',
@@ -21,12 +22,16 @@ angular.module('kal3aTagsApp')
       '</script>'
     ].join(''),
     bindings: {
-      'tag': '<',
-      'onUpdate': '&'
+      query: '<',
+      onUpdate: '&'
+    },
+    require: {
+      queryCtrl: '^kal3aQuery'
     },
     controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
       var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
 
+      this.disable = false;
       this.update = function (value) {
         this.onUpdate({ value: value });
       };
@@ -55,6 +60,9 @@ angular.module('kal3aTagsApp')
               return {key: row.key[0], value: row.value};
             });
           }.bind(this));
+      };
+      this.$onInit = function () {
+        this.queryCtrl.inputs.push(this);
       };
 
     }]

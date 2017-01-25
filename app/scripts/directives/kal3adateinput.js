@@ -12,7 +12,7 @@ angular.module('kal3aTagsApp')
     template: [
       '<div class="form-group">',
       '<label class="control-label">{{ $ctrl.label }}</label>',
-      '<input type="date" ng-model="$ctrl.date" class="form-control" ng-change="$ctrl.update($ctrl.date)">',
+      '<input type="date" ng-model="$ctrl.date" class="form-control" ng-change="$ctrl.update($ctrl.date)" ng-disabled="$ctrl.disable">',
       '</div>'
     ].join(''),
     bindings: {
@@ -20,12 +20,19 @@ angular.module('kal3aTagsApp')
       label: '@',
       onUpdate: '&'
     },
+    require: {
+      queryCtrl: '^kal3aQuery'
+    },
     controller: function () {
+      this.disable = false;
       this.update = function (value) {
         if (angular.isDate(value)) {
           value.setUTCHours(0,0,0,0);
         }
         this.onUpdate({value: value});
+      };
+      this.$onInit = function () {
+        this.queryCtrl.inputs.push(this);
       };
     }
   });

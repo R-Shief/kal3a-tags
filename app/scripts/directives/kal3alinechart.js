@@ -49,7 +49,7 @@ angular.module('kal3aTagsApp')
           query.dateRange[1].getDate(),
           {}
         ];
-        $http
+        return $http
           .get(server + '/_design/tag/_view/timeseries', {
             params: {
               group: true,
