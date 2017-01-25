@@ -12,6 +12,7 @@ angular.module('kal3aTagsApp')
     template: ['$element', '$attrs', function ($element, $attrs) {
       return [
         '<form class="row" ng-model-options="{ debounce: 500 }">',
+        '<div uib-alert ng-class="\'alert-danger\'" ng-if="$ctrl.error">{{$ctrl.error.reason}}</div>',
         '<kal3a-tag-input query="$ctrl.query" on-update="$ctrl.update(\'query\', \'tag\', value)"></kal3a-tag-input>',
         '<kal3a-date-range-input date-range="$ctrl.query.dateRange" on-update="$ctrl.update(\'query\', \'dateRange\', value)"></kal3a-date-range-input>',
         '</form>',
@@ -38,6 +39,7 @@ angular.module('kal3aTagsApp')
       };
       this.inputs = [];
       this.graphs = [];
+      this.error = false;
 
       this.update = function (obj, prop, value) {
         var query;
@@ -64,12 +66,16 @@ angular.module('kal3aTagsApp')
           angular.isDefined(query.dateRange[1]) &&
           angular.isDefined(query.tag)) {
 
+          queryCtrl.error = false;
+
           angular.forEach(queryCtrl.inputs, function (ctrl) {
             ctrl.disable = true;
           });
 
           angular.forEach(queryCtrl.graphs, function (ctrl) {
-            ctrl.runQuery(query).then(function () {
+            ctrl.runQuery(query).catch(function (res) {
+              queryCtrl.error = res.data;
+            }).finally(function () {
               angular.forEach(queryCtrl.inputs, function (ctrl) {
                 ctrl.disable = false;
               });
