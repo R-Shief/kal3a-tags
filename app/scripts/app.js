@@ -14,6 +14,10 @@ angular
     'nvd3',
     'ui.bootstrap'
   ])
+  .run(['$rootScope', '$route', '$location', function ($rootScope, $route, $location) {
+    $rootScope.$route = $route;
+    $rootScope.$location = $location;
+  }])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/specimen/line-chart', {
