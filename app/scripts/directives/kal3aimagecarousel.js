@@ -9,7 +9,7 @@
 angular.module('kal3aTagsApp')
   .component('kal3aImageCarousel', {
     template: [
-      '<div uib-carousel>',
+      '<div uib-carousel active="$ctrl.active">',
       '<div uib-slide ng-repeat="slide in $ctrl.slides" index="slide.id">',
       '<img ng-src="{{ slide.src }}" ng-style="slide.style">',
       '</div>',
@@ -23,6 +23,8 @@ angular.module('kal3aTagsApp')
     },
     controller: ['$http', 'fosRouting', '_', function ($http, fosRouting, _) {
       var server = fosRouting.generate('_guzzle_proxy_couchdb', {}, true);
+
+      this.active = 0;
 
       this.$onInit = function () {
         this.queryCtrl.graphs.push(this);
