@@ -45,7 +45,7 @@ angular.module('kal3aTagsApp')
         var query;
         this[obj][prop] = value;
         query = this[obj];
-        runQuery(query, this.graphs, this);
+        runQuery(query, this);
       };
 
       this.$onInit = function () {
@@ -58,10 +58,10 @@ angular.module('kal3aTagsApp')
       };
 
       this.$postLink = function () {
-        runQuery(this.query, this.graphs, this);
+        runQuery(this.query, this);
       };
 
-      function runQuery(query, graphs, queryCtrl) {
+      function runQuery(query, queryCtrl) {
         if (angular.isDefined(query.dateRange[0]) &&
           angular.isDefined(query.dateRange[1]) &&
           angular.isDefined(query.tag)) {
