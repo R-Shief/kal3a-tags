@@ -9,7 +9,7 @@
 angular.module('kal3aTagsApp')
   .component('kal3aTagInput', {
     template: [
-      '<div class="form-group">',
+      '<div class="form-group col-md-12">',
       '<label class="control-label">Tag</label>',
       '<input type="text" ng-model="$ctrl.tag" ng-model-options="{ debounce: 200 }" typeahead-on-select="$ctrl.update($item.key)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg" typeahead-select-on-blur="true" typeahead-select-on-exact="true" ng-change="$ctrl.update($ctrl.tag)">',
       '</div>',

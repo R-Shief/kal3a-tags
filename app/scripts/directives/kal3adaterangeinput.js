@@ -9,10 +9,8 @@
 angular.module('kal3aTagsApp')
   .component('kal3aDateRangeInput', {
     template: [
-      '<div class="form-inline">',
-      '<kal3a-date-input date="$ctrl.dateRange[0]" label="Start date" on-update="$ctrl.update(0, value)"></kal3a-date-input>',
-      '<kal3a-date-input date="$ctrl.dateRange[1]" label="End date" on-update="$ctrl.update(1, value)"></kal3a-date-input>',
-      '</div>'
+      '<kal3a-date-input date="$ctrl.dateRange[0]" label="Start date" on-update="$ctrl.update(0, value)" class="col-md-6"></kal3a-date-input>',
+      '<kal3a-date-input date="$ctrl.dateRange[1]" label="End date" on-update="$ctrl.update(1, value)" class="col-md-6"></kal3a-date-input>'
     ].join(''),
     bindings: {
       dateRange: '<',
