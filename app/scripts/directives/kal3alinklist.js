@@ -23,7 +23,7 @@ angular.module('kal3aTagsApp')
 
       this.runQuery = function (query) {
         return $http
-          .get(server + '/_design/nofollow/_view/tags', {
+          .get(server + '/_design/tags/_view/nofollow', {
             params: {
               group: true,
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers

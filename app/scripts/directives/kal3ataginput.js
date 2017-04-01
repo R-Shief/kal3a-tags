@@ -44,7 +44,7 @@ angular.module('kal3aTagsApp')
           endkey = val.substr(0, endPosition) + nextCharacter;
 
         return $http
-          .get(server + '/_design/tag/_view/timeseries', {
+          .get(server + '/_design/timeseries/_view/tag', {
             params: {
               group: true,
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers

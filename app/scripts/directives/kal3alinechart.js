@@ -50,7 +50,7 @@ angular.module('kal3aTagsApp')
           {}
         ];
         return $http
-          .get(server + '/_design/tag/_view/timeseries', {
+          .get(server + '/_design/timeseries/_view/tag', {
             params: {
               group: true,
               // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
