@@ -8,7 +8,7 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aSpecimen', {
-      template: ['$element', function ($element) {
+      template: [function () {
         return [
           '<div class="panel panel-default">',
           '<div class="panel-body">',

@@ -9,7 +9,7 @@
  */
 angular.module('kal3aTagsApp')
   .component('kal3aQuery', {
-    template: ['$element', '$attrs', function ($element, $attrs) {
+    template: [function () {
       return [
         '<form class="row" ng-model-options="{ debounce: 500, updateOn: \'default blur\' }">',
         '<div uib-alert ng-class="\'alert-danger\'" ng-if="$ctrl.error">{{$ctrl.error.reason}}</div>',
@@ -41,26 +41,6 @@ angular.module('kal3aTagsApp')
       this.graphs = [];
       this.error = false;
 
-      this.update = function (obj, prop, value) {
-        var query;
-        this[obj][prop] = value;
-        query = this[obj];
-        runQuery(query, this);
-      };
-
-      this.$onInit = function () {
-        if (angular.isDefined(this.tag)) {
-          this.query.tag = this.tag;
-        }
-        if (angular.isDefined(this.dateRange)) {
-          this.query.dateRange = [new Date(this.dateRange[0]), new Date(this.dateRange[1])];
-        }
-      };
-
-      this.$postLink = function () {
-        runQuery(this.query, this);
-      };
-
       function runQuery(query, queryCtrl) {
         if (angular.isDefined(query.dateRange[0]) &&
           angular.isDefined(query.dateRange[1]) &&
@@ -83,5 +63,26 @@ angular.module('kal3aTagsApp')
           });
         }
       }
+
+      this.update = function (obj, prop, value) {
+        var query;
+        this[obj][prop] = value;
+        query = this[obj];
+        runQuery(query, this);
+      };
+
+      this.$onInit = function () {
+        if (angular.isDefined(this.tag)) {
+          this.query.tag = this.tag;
+        }
+        if (angular.isDefined(this.dateRange)) {
+          this.query.dateRange = [new Date(this.dateRange[0]), new Date(this.dateRange[1])];
+        }
+      };
+
+      this.$postLink = function () {
+        runQuery(this.query, this);
+      };
+
     }]
   });
