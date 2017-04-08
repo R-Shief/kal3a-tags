@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: _', function () {
+describe('Service: d3', function () {
 
   // load the service's module
   beforeEach(module('kal3aTagsApp'));
 
   // instantiate service
-  var _;
-  beforeEach(inject(function (___) {
-    _ = ___;
+  var d3;
+  beforeEach(inject(function (_d3_) {
+    d3 = _d3_;
   }));
 
   it('should do something', function () {
-    expect(!!_).toBe(true);
+    expect(!!d3).toBe(true);
   });
 
 });
