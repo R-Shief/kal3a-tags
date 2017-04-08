@@ -12,7 +12,20 @@ angular.module('kal3aTagsApp')
     template: [
       '<div class="form-group col-md-12">',
       '<label class="control-label">Tag</label>',
-      '<input type="text" ng-model="$ctrl.query.tag" typeahead-on-select="$ctrl.update($item.key)" placeholder="Start typing and our list of keywords will drop down" typeahead-template-url="customTemplate.html" uib-typeahead="address as address.key for address in $ctrl.getTags($viewValue)" class="form-control input-lg" typeahead-select-on-blur="true" typeahead-select-on-exact="true" ng-change="$ctrl.update($ctrl.query.tag)" ng-disabled="$ctrl.disable">',
+
+      '<input type="text" ' +
+      'ng-model="$ctrl.query.tag" ' +
+      'typeahead-focus-first="false" ' +
+      'typeahead-on-select="$ctrl.update($item.key)" ' +
+      'placeholder="Start typing and our list of keywords will drop down" ' +
+      'typeahead-template-url="customTemplate.html" ' +
+      'uib-typeahead="tag as tag.key for tag in $ctrl.getTags($viewValue)" ' +
+      'class="form-control input-lg" ' +
+      'typeahead-select-on-blur="true" ' +
+      'typeahead-select-on-exact="false" ' +
+      'ng-change="$ctrl.update($ctrl.query.tag)" ' +
+      'ng-disabled="$ctrl.disable">',
+
       '</div>',
       '<script type="text/ng-template" id="customTemplate.html">',
       '<a>',
