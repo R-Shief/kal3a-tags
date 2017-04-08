@@ -65,7 +65,7 @@ angular.module('kal3aTagsApp')
                 return { id: k, src: row.key[4], style: { height: '500px' } };
               },
               filterLongTail = function (row) {
-                return (row.value > 5);
+                return (row.value > 0);
               };
 
             this.slides = _(res.data.rows).chain().sortBy(reverseSort).filter(filterLongTail).map(slideFactory).uniq().value();
