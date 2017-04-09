@@ -73,9 +73,7 @@ angular
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query tag="business"&gt;','<br/>',
-          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
-          '&lt;/kal3a-query&gt;',
+          '&lt;kal3a-language-table&gt;&lt;/kal3a-language-table&gt;','<br/>',
           '</code>',
           '<preview>',
           '<kal3a-language-table></kal3a-language-table>',
@@ -87,9 +85,7 @@ angular
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query tag="business"&gt;','<br/>',
-          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
-          '&lt;/kal3a-query&gt;',
+          '&lt;kal3a-daily-table&gt;&lt;/kal3a-daily-table&gt;','<br/>',
           '</code>',
           '<preview>',
           '<kal3a-daily-table></kal3a-daily-table>',
@@ -101,9 +97,7 @@ angular
         template: [
           '<kal3a-specimen>',
           '<code>',
-          '&lt;kal3a-query tag="business"&gt;','<br/>',
-          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
-          '&lt;/kal3a-query&gt;',
+          '&lt;kal3a-hourly-table&gt;&lt;/kal3a-hourly-table&gt;','<br/>',
           '</code>',
           '<preview>',
           '<kal3a-hourly-table></kal3a-hourly-table>',
