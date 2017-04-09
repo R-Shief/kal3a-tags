@@ -69,6 +69,48 @@ angular
           '</kal3a-specimen>'
         ].join('')
       })
+      .when('/specimen/language-table', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-language-table></kal3a-language-table>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join('')
+      })
+      .when('/specimen/daily-table', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-daily-table></kal3a-daily-table>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join('')
+      })
+      .when('/specimen/hourly-table', {
+        template: [
+          '<kal3a-specimen>',
+          '<code>',
+          '&lt;kal3a-query tag="business"&gt;','<br/>',
+          '  &lt;kal3a-link-list query="$ctrl.query"&gt;&lt;/kal3a-link-list&gt;','<br/>',
+          '&lt;/kal3a-query&gt;',
+          '</code>',
+          '<preview>',
+          '<kal3a-hourly-table></kal3a-hourly-table>',
+          '</preview>',
+          '</kal3a-specimen>'
+        ].join('')
+      })
       .when('/parameters/:id', {
         templateUrl: 'views/parameters.html',
         controller: 'ParametersCtrl',
