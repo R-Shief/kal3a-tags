@@ -114,8 +114,29 @@ angular
             return $route.current.params.id;
           }]
         }
-
-      });
+      })
+      .otherwise({
+        template: [
+          '<div class="column">',
+          '<div class="col-md-6">',
+          '<kal3a-hourly-table></kal3a-hourly-table>',
+          '</div>',
+          '<div class="col-md-6">',
+          '<kal3a-daily-table></kal3a-daily-table>',
+          '<kal3a-language-table></kal3a-language-table>',
+          '</div>',
+          '<div class="col-md-12">',
+          '<kal3a-collection-chart parameters="1"></kal3a-collection-chart>',
+          '<kal3a-query tag="\'business\'">',
+          '<kal3a-line-chart query="$ctrl.query"></kal3a-line-chart>',
+          '<kal3a-image-carousel query="$ctrl.query"></kal3a-image-carousel>',
+          '<kal3a-link-list query="$ctrl.query"></kal3a-link-list>',
+          '</kal3a-query>',
+          '</div>',
+          '</div>'
+        ].join('')
+      })
+    ;
 
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('');
